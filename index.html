@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenna Brooks' Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fdebd0;
+            margin: 0;
+            display: flex;
+        }
+        .sidebar {
+            background-color: #097969;
+            color: #fdebd0;
+            width: 250px;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar img {
+            border-radius: 50%;
+            width: 100px; /* Adjust as needed */
+            height: 100px; /* Adjust as needed */
+            margin-bottom: 20px;
+        }
+        .sidebar h1 {
+            font-weight: 300;
+            color: #90bfc5;
+            margin: 0;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #fdebd0;
+            font-weight: 400;
+            padding: 10px 0;
+        }
+        .sidebar a.active {
+            color: #90bfc5; /* Color for active section */
+        }
+        .content {
+            margin-left: 260px; /* Width of sidebar + margin */
+            padding: 20px;
+            flex-grow: 1;
+        }
+        h2 {
+            font-weight: 400;
+            color: #097969;
+            font-size: 3em; /* Adjust as needed */
+        }
+        h3 {
+            font-weight: 400;
+            color: #6e9296;
+            font-size: 2em; /* 2x body text size */
+        }
+        p {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: #000000;
+            font-size: 1em; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="profile.jpg" alt="Profile Picture">
+    <h1>JENNA BROOKS</h1>
+    <a href="#about" class="active">ABOUT</a>
+    <a href="#projects">PROJECTS</a>
+</div>
+
+<div class="content">
+    <section id="about">
+        <h2>ABOUT</h2>
+        <h3>RESUME</h3>
+        <p>Your resume details go here.</p>
+    </section>
+
+    <section id="projects">
+        <h2>PROJECTS</h2>
+        <p>Details about your projects go here.</p>
+    </section>
+</div>
+<script>
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.sidebar a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
